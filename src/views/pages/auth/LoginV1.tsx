@@ -83,7 +83,7 @@ const LoginV1 = () => {
                 Forgot password?
               </Typography>
             </div>
-            <Button fullWidth varianpt='contained' type='submit'>
+            <Button fullWidth variant='contained' type='submit'>
               Login
             </Button>
             <div className='flex justify-center items-center flex-wrap gap-2'>
