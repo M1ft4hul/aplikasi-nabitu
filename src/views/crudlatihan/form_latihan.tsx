@@ -69,7 +69,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   return itemRank.passed
 }
 
-// A debounced input react component
+// PENCARIAN
 const DebouncedInput = ({
   value: initialValue,
   onChange,
@@ -99,9 +99,8 @@ const DebouncedInput = ({
   return <CustomTextField {...props} value={value} onChange={e => setValue(e.target.value)} />
 }
 
-const KitchenSink = async () => {
+const FormLatihan = async () => {
   // States
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [globalFilter, setGlobalFilter] = useState('')
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [data, setData] = useState<DataType[]>(() => defaultData)
@@ -110,15 +109,15 @@ const KitchenSink = async () => {
   const columns = useMemo<ColumnDef<DataType, any>[]>(
     () => [
       columnHelper.accessor('id', {
-        cell: info => info.getValue(),
+        // cell: info => info.getValue(),
         header: 'ID'
       }),
       columnHelper.accessor('judul', {
-        cell: info => info.getValue(),
+        // cell: info => info.getValue(),
         header: 'Judul'
       }),
       columnHelper.accessor('isi', {
-        cell: info => info.getValue(),
+        // cell: info => info.getValue(),
         header: 'Isi'
       })
     ],
@@ -133,10 +132,8 @@ const KitchenSink = async () => {
       fuzzy: fuzzyFilter
     },
     state: {
-      columnFilters,
       globalFilter
     },
-    onColumnFiltersChange: setColumnFilters,
     onGlobalFilterChange: setGlobalFilter,
     globalFilterFn: fuzzyFilter,
     getCoreRowModel: getCoreRowModel(),
@@ -147,15 +144,6 @@ const KitchenSink = async () => {
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getFacetedMinMaxValues: getFacetedMinMaxValues()
   })
-
-  useEffect(() => {
-    if (table.getState().columnFilters[0]?.id === 'judul') {
-      if (table.getState().sorting[0]?.id !== 'judul') {
-        table.setSorting([{ id: 'judul', desc: false }])
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [table.getState().columnFilters[0]?.id])
 
   const Latihan = await getLatihan()
   return (
@@ -173,33 +161,11 @@ const KitchenSink = async () => {
       <div className='overflow-x-auto'>
         <table className={styles.table}>
           <thead>
-            {table.getHeaderGroups().map(headerGroup => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map(header => {
-                  return (
-                    <th key={header.id}>
-                      {header.isPlaceholder ? null : (
-                        <>
-                          <div
-                            className={classnames({
-                              'flex items-center': header.column.getIsSorted(),
-                              'cursor-pointer select-none': header.column.getCanSort()
-                            })}
-                            onClick={header.column.getToggleSortingHandler()}
-                          >
-                            {flexRender(header.column.columnDef.header, header.getContext())}
-                            {{
-                              asc: <ChevronRight fontSize='1.25rem' className='-rotate-90' />,
-                              desc: <ChevronRight fontSize='1.25rem' className='rotate-90' />
-                            }[header.column.getIsSorted() as 'asc' | 'desc'] ?? null}
-                          </div>
-                        </>
-                      )}
-                    </th>
-                  )
-                })}
-              </tr>
-            ))}
+            <tr>
+              <th>No</th>
+              <th>Judul</th>
+              <th>Isi</th>
+            </tr>
           </thead>
           {/* buat pesan kalau datanya di cari ga ada */}
           {table.getFilteredRowModel().rows.length === 0 ? (
@@ -220,6 +186,14 @@ const KitchenSink = async () => {
                   <td>{konten.isi}</td>
                 </tr>
               ))}
+              {/* {table.getRowModel().rows.map(row => {
+                return (
+                  <tr key={row.id}>
+                    {row.getVisibleCells().map(cell => {
+                      return <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                    })}
+                  </tr>
+                ) */}
             </tbody>
           )}
         </table>
@@ -237,4 +211,4 @@ const KitchenSink = async () => {
   )
 }
 
-export default KitchenSink
+export default FormLatihan
