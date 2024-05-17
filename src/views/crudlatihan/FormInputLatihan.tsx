@@ -1,6 +1,8 @@
+'use client'
+
 // React Imports
-// import { useState } from 'react'
-import { db } from '@/libs'
+import { useState } from 'react'
+
 // MUI Imports
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
@@ -11,34 +13,16 @@ import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
+import InputAdornment from '@mui/material/InputAdornment'
+import IconButton from '@mui/material/IconButton'
 
 // Components Imports
 import CustomTextField from '@core/components/mui/TextField'
 import data from '@/data/searchData'
 import { redirect } from 'next/dist/server/api-utils'
+import { ButtonsReset, ButtonsSimpan } from './button'
 
 const FormInputLatihan = () => {
-  async function createLatihan(formData: FormData) {
-    'use server'
-
-    // cek input dari user dan pastikan datanya valid
-    const judul = formData.get('judul') as string;
-    const isi =  formData.get('isi') as string;
-
-    // buat data baru di database
-    // const latihan = await db.latihan.create({
-    //   data: {
-    //     judul,
-    //     isi
-    //   }
-    // });
-    // console.log(latihan);
-
-    // action={createLatihan}
-
-    // kembali ke halaman data
-    // redirect('/dashboards/index');
-  }
   return (
     <Card>
       <CardHeader title='Tambah Soal Latihan' />
@@ -73,12 +57,8 @@ const FormInputLatihan = () => {
         </CardContent>
         <Divider />
         <CardActions>
-          <Button type='submit' variant='contained' className='mie-2'>
-            Submit
-          </Button>
-          <Button type='reset' variant='tonal' color='secondary'>
-            Reset
-          </Button>
+          <ButtonsSimpan />
+          <ButtonsReset />
         </CardActions>
       </form>
     </Card>
