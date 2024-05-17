@@ -43,6 +43,7 @@ import styles from '@core/styles/table.module.css'
 // Data Imports
 import defaultData from './datas'
 import { getLatihan } from '@/libs/data'
+import { ButtonsEdit, ButtonsHapus } from './button'
 
 // Column Definitions
 const columnHelper = createColumnHelper<DataType>()
@@ -165,6 +166,7 @@ const FormLatihan = async () => {
               <th>No</th>
               <th>Judul</th>
               <th>Isi</th>
+              <th className='flex justify-center'>Aksi</th>
             </tr>
           </thead>
           {/* buat pesan kalau datanya di cari ga ada */}
@@ -184,6 +186,10 @@ const FormLatihan = async () => {
                   <td>{index + 1}</td>
                   <td>{konten.judul}</td>
                   <td>{konten.isi}</td>
+                  <td className='flex justify-center gap-1 '>
+                    <ButtonsHapus />
+                    <ButtonsEdit />
+                  </td>
                 </tr>
               ))}
             </tbody>
