@@ -42,6 +42,7 @@ import styles from '@core/styles/table.module.css'
 
 // Data Imports
 import defaultData from './datas'
+import { getLatihan } from '@/libs/data'
 
 // Column Definitions
 const columnHelper = createColumnHelper<DataType>()
@@ -98,43 +99,7 @@ const DebouncedInput = ({
   return <CustomTextField {...props} value={value} onChange={e => setValue(e.target.value)} />
 }
 
-const Filter = ({ column, table }: { column: Column<any, unknown>; table: Table<any> }) => {
-  // Vars
-  const firstValue = table.getPreFilteredRowModel().flatRows[0]?.getValue(column.id)
-
-  const columnFilterValue = column.getFilterValue()
-
-  return typeof firstValue === 'number' ? (
-    <div className='flex gap-x-2'>
-      <CustomTextField
-        fullWidth
-        type='number'
-        sx={{ minInlineSize: 100, maxInlineSize: 125 }}
-        value={(columnFilterValue as [number, number])?.[0] ?? ''}
-        onChange={e => column.setFilterValue((old: [number, number]) => [e.target.value, old?.[1]])}
-        placeholder={`Min ${column.getFacetedMinMaxValues()?.[0] ? `(${column.getFacetedMinMaxValues()?.[0]})` : ''}`}
-      />
-      <CustomTextField
-        fullWidth
-        type='number'
-        sx={{ minInlineSize: 100, maxInlineSize: 125 }}
-        value={(columnFilterValue as [number, number])?.[1] ?? ''}
-        onChange={e => column.setFilterValue((old: [number, number]) => [old?.[0], e.target.value])}
-        placeholder={`Max ${column.getFacetedMinMaxValues()?.[1] ? `(${column.getFacetedMinMaxValues()?.[1]})` : ''}`}
-      />
-    </div>
-  ) : (
-    <CustomTextField
-      fullWidth
-      sx={{ minInlineSize: 100 }}
-      value={(columnFilterValue ?? '') as string}
-      onChange={e => column.setFilterValue(e.target.value)}
-      placeholder='Search...'
-    />
-  )
-}
-
-const KitchenSink = () => {
+const KitchenSink = async () => {
   // States
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [globalFilter, setGlobalFilter] = useState('')
@@ -192,6 +157,7 @@ const KitchenSink = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [table.getState().columnFilters[0]?.id])
 
+  const Latihan = await getLatihan()
   return (
     <Card>
       <CardHeader
@@ -227,7 +193,6 @@ const KitchenSink = () => {
                               desc: <ChevronRight fontSize='1.25rem' className='rotate-90' />
                             }[header.column.getIsSorted() as 'asc' | 'desc'] ?? null}
                           </div>
-                          {header.column.getCanFilter() && <Filter column={header.column} table={table} />}
                         </>
                       )}
                     </th>
@@ -236,26 +201,25 @@ const KitchenSink = () => {
               </tr>
             ))}
           </thead>
+          {/* buat pesan kalau datanya di cari ga ada */}
           {table.getFilteredRowModel().rows.length === 0 ? (
             <tbody>
               <tr>
                 <td colSpan={table.getVisibleFlatColumns().length} className='text-center'>
-                  No data available
+                  data yang di cari tidak ada
                 </td>
               </tr>
             </tbody>
           ) : (
+            // ini datanya (TAMPIL DATA SUKSES)
             <tbody>
-              {table
-                .getRowModel()
-                .rows.slice(0, 10)
-                .map(row => (
-                  <tr key={row.id}>
-                    {row.getVisibleCells().map(cell => (
-                      <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-                    ))}
-                  </tr>
-                ))}
+              {Latihan.map((konten, index) => (
+                <tr key={konten.id}>
+                  <td>{index + 1}</td>
+                  <td>{konten.judul}</td>
+                  <td>{konten.isi}</td>
+                </tr>
+              ))}
             </tbody>
           )}
         </table>

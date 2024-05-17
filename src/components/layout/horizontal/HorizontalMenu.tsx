@@ -123,7 +123,7 @@ const HorizontalMenu = ({ dictionary }: { dictionary: Awaited<ReturnType<typeof 
             {dictionary['navigation'].latihans}
           </MenuItem>
 
-          <SubMenu label={dictionary['navigation'].invoice} icon={<i className='tabler-file-description' />}>
+          {/* <SubMenu label={dictionary['navigation'].invoice} icon={<i className='tabler-file-description' />}>
             <MenuItem href={`/${locale}/apps/invoice/list`}>{dictionary['navigation'].list}</MenuItem>
             <MenuItem href={`/${locale}/apps/invoice/preview/${id || '4987'}`}>
               {dictionary['navigation'].preview}
@@ -138,9 +138,10 @@ const HorizontalMenu = ({ dictionary }: { dictionary: Awaited<ReturnType<typeof 
           <SubMenu label={dictionary['navigation'].rolesPermissions} icon={<i className='tabler-lock' />}>
             <MenuItem href={`/${locale}/apps/roles`}>{dictionary['navigation'].roles}</MenuItem>
             <MenuItem href={`/${locale}/apps/permissions`}>{dictionary['navigation'].permissions}</MenuItem>
-          </SubMenu>
+          </SubMenu> */}
         </SubMenu>
-        <SubMenu label={dictionary['navigation'].pages} icon={<i className='tabler-file' />}>
+
+        {/* <SubMenu label={dictionary['navigation'].pages} icon={<i className='tabler-file' />}>
           <MenuItem href={`/${locale}/pages/user-profile`} icon={<i className='tabler-user-circle' />}>
             {dictionary['navigation'].userProfile}
           </MenuItem>
@@ -343,7 +344,7 @@ const HorizontalMenu = ({ dictionary }: { dictionary: Awaited<ReturnType<typeof 
             </SubMenu>
           </SubMenu>
           <MenuItem disabled>{dictionary['navigation'].disabledMenu}</MenuItem>
-        </SubMenu>
+        </SubMenu> */}
       </Menu>
       {/* <Menu
         rootStyles={menuRootStyles(theme)}
