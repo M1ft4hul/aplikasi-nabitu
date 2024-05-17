@@ -24,7 +24,7 @@ export const ButtonsEdit = () => {
 export const ButtonsTambah = () => {
   return (
     <div className='flex gap-4'>
-      <Button variant='contained' href='#' color='primary' startIcon={<i className='tabler-file-plus' />}>
+      <Button variant='contained' href='/apps/latihan/create' color='primary' startIcon={<i className='tabler-file-plus' />}>
         Tambah Data
       </Button>
     </div>
