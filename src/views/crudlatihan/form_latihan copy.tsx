@@ -42,6 +42,7 @@ import styles from '@core/styles/table.module.css'
 
 // Data Imports
 import defaultData from './datas'
+import TabelData from '@/views/crudlatihan/crud/tabel-latihan'
 
 // Column Definitions
 const columnHelper = createColumnHelper<DataType>()
@@ -98,7 +99,7 @@ const DebouncedInput = ({
   return <CustomTextField {...props} value={value} onChange={e => setValue(e.target.value)} />
 }
 
-const FormLatihan = ({ content }: { content: any }) => {
+const FormLatihan = () => {
   // States
   const [globalFilter, setGlobalFilter] = useState('')
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -177,7 +178,7 @@ const FormLatihan = ({ content }: { content: any }) => {
             </tbody>
           ) : (
             // ini datanya (TAMPIL DATA SUKSES)
-            <tbody>{content}</tbody>
+            <TabelData />
           )}
         </table>
       </div>
