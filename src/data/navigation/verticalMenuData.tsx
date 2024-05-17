@@ -33,7 +33,7 @@ const verticalMenuData = (
       {
         label: dictionary['navigation'].eCommerce,
         icon: 'tabler-circle',
-        href: '/dashboards/ecommerce'
+        href: '/dashboards/index'
       }
     ]
   },
@@ -47,6 +47,11 @@ const verticalMenuData = (
         label: dictionary['navigation'].calendar,
         icon: 'tabler-calendar',
         href: '/apps/calendar'
+      },
+      {
+        label: dictionary['navigation'].latihans,
+        icon: 'tabler-edit-circle',
+        href: '/apps/latihan'
       },
       {
         label: dictionary['navigation'].invoice,

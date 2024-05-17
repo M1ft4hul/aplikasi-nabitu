@@ -97,7 +97,7 @@ const HorizontalMenu = ({ dictionary }: { dictionary: Awaited<ReturnType<typeof 
           menuSectionStyles: verticalMenuSectionStyles(verticalNavOptions, theme)
         }}
       >
-        <SubMenu label={dictionary['navigation'].dashboards} icon={<i className='tabler-smart-home' />}>
+        {/* <SubMenu label={dictionary['navigation'].dashboards} icon={<i className='tabler-smart-home' />}>
           <MenuItem href={`/${locale}/dashboards/crm`} icon={<i className='tabler-chart-pie-2' />}>
             {dictionary['navigation'].crm}
           </MenuItem>
@@ -107,11 +107,22 @@ const HorizontalMenu = ({ dictionary }: { dictionary: Awaited<ReturnType<typeof 
           <MenuItem href={`/${locale}/dashboards/ecommerce`} icon={<i className='tabler-shopping-cart' />}>
             {dictionary['navigation'].eCommerce}
           </MenuItem>
-        </SubMenu>
+        </SubMenu> */}
+        <MenuItem href={`/${locale}/dashboards/index`} icon={<i className='tabler-smart-home' />}>
+          {dictionary['navigation'].dashboards}
+        </MenuItem>
+
         <SubMenu label={dictionary['navigation'].apps} icon={<i className='tabler-mail' />}>
+          {/* menu kalender */}
           <MenuItem href={`/${locale}/apps/calendar`} icon={<i className='tabler-calendar' />}>
             {dictionary['navigation'].calendar}
           </MenuItem>
+
+          {/* menu latihan */}
+          <MenuItem href={`/${locale}/apps/latihan`} icon={<i className='tabler-ballpen' />}>
+            {dictionary['navigation'].latihans}
+          </MenuItem>
+
           <SubMenu label={dictionary['navigation'].invoice} icon={<i className='tabler-file-description' />}>
             <MenuItem href={`/${locale}/apps/invoice/list`}>{dictionary['navigation'].list}</MenuItem>
             <MenuItem href={`/${locale}/apps/invoice/preview/${id || '4987'}`}>

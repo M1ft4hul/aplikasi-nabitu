@@ -37,7 +37,7 @@ const defaultSuggestions: DefaultSuggestionsType[] = [
       },
       {
         label: 'eCommerce',
-        href: '/dashboards/ecommerce',
+        href: '/dashboards/index',
         icon: 'tabler-shopping-cart'
       },
       {
@@ -54,6 +54,11 @@ const defaultSuggestions: DefaultSuggestionsType[] = [
         label: 'Calendar',
         href: '/apps/calendar',
         icon: 'tabler-calendar'
+      },
+      {
+        label: 'Latihan',
+        href: '/apps/latihan',
+        icon: 'tabler-edit-circle'
       },
       {
         label: 'Invoice List',

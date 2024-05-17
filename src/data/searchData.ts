@@ -23,7 +23,7 @@ const data: SearchData[] = [
   {
     id: '3',
     name: 'eCommerce Dashboard',
-    url: '/dashboards/ecommerce',
+    url: '/dashboards/index',
     icon: 'tabler-shopping-cart',
     section: 'Dashboards'
   },
@@ -600,6 +600,13 @@ const data: SearchData[] = [
     url: `${process.env.NEXT_PUBLIC_DOCS_URL}/docs/user-interface/mui-table`,
     icon: 'tabler-layout-board-split',
     section: 'Forms & Tables'
+  },
+  {
+    id: '86',
+    name: 'Latihan',
+    url: '/apps/latihan',
+    icon: 'tabler-edit-circle',
+    section: 'Apps'
   }
 ]
 
