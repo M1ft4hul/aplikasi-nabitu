@@ -9,7 +9,7 @@ const TabelData = async () => {
       <td>{konten.judul}</td>
       <td>{konten.isi}</td>
       <td className='flex justify-center gap-1 '>
-        <ButtonsHapus />
+        <ButtonsHapus id={konten.id} />
         <ButtonsEdit id={konten.id} />
       </td>
     </tr>

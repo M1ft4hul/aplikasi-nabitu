@@ -67,3 +67,16 @@ export const updateLatihan = async (id: string, prevState: any, formData: FormDa
   revalidatePath('/apps/latihan')
   redirect('/apps/latihan')
 }
+
+// hapus data
+export const deleteLatihan = async (id: string) => {
+  // simpan ke database (edit data)
+  try {
+    await prisma.konten.delete({
+      where: { id }
+    })
+  } catch (error) {
+    return { message: 'Latihan gagal di hapus' }
+  }
+  revalidatePath('/apps/latihan')
+}

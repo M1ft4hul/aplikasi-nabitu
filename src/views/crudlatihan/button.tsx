@@ -2,13 +2,17 @@
 // MUI Imports
 import Button from '@mui/material/Button'
 import { useFormStatus } from 'react-dom'
+import { deleteLatihan } from '@/libs/actions'
 
-export const ButtonsHapus = () => {
+export const ButtonsHapus = ({ id }: { id: string }) => {
+  const DeleteLatihanWithId = deleteLatihan.bind(null, id)
   return (
     <div className='flex gap-4'>
-      <Button variant='contained' href='#' color='error' startIcon={<i className='tabler-trash' />}>
-        Hapus
-      </Button>
+      <form action={DeleteLatihanWithId}>
+        <Button type='submit' variant='contained' color='error' startIcon={<i className='tabler-trash' />}>
+          Hapus
+        </Button>
+      </form>
     </div>
   )
 }
