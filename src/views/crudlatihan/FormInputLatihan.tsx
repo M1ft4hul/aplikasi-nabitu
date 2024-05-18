@@ -21,13 +21,17 @@ import CustomTextField from '@core/components/mui/TextField'
 import data from '@/data/searchData'
 import { redirect } from 'next/dist/server/api-utils'
 import { ButtonsReset, ButtonsSimpan } from './button'
+import { saveLatihan } from '@/libs/actions'
+import { useFormState } from 'react-dom'
 
 const FormInputLatihan = () => {
+  // validation
+  const [state, formAction] = useFormState(saveLatihan, null)
   return (
     <Card>
       <CardHeader title='Tambah Soal Latihan' />
       <Divider />
-      <form>
+      <form action={formAction}>
         <CardContent>
           <Grid container spacing={6}>
             <Grid item xs={12}>
@@ -43,6 +47,10 @@ const FormInputLatihan = () => {
                 name='judul'
                 id='judul'
               />
+              {/* menampilkan pesan error */}
+              <div id='judul-error' aria-live='polite' aria-atomic='true'>
+                <p className='text-red-700'>{state?.Error?.judul}</p>
+              </div>
             </Grid>
             <Grid item xs={12} sm={6}>
               <CustomTextField
@@ -52,12 +60,20 @@ const FormInputLatihan = () => {
                 name='isi'
                 id='isi'
               />
+              {/* menampilkan pesan error */}
+              <div id='isi-error' aria-live='polite' aria-atomic='true'>
+                <p className='text-red-700'>{state?.Error?.isi}</p>
+              </div>
             </Grid>
           </Grid>
+          {/* pesan error */}
+          <div id='message-error' aria-live='polite' aria-atomic='true'>
+            <p className='text-red-700'>{state?.message}</p>
+          </div>
         </CardContent>
         <Divider />
         <CardActions>
-          <ButtonsSimpan />
+          <ButtonsSimpan label='save' />
           <ButtonsReset />
         </CardActions>
       </form>

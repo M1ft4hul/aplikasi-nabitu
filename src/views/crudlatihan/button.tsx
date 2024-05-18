@@ -1,5 +1,7 @@
+'use client'
 // MUI Imports
 import Button from '@mui/material/Button'
+import { useFormStatus } from 'react-dom'
 
 export const ButtonsHapus = () => {
   return (
@@ -25,7 +27,12 @@ export const ButtonsEdit = () => {
 export const ButtonsTambah = () => {
   return (
     <div className='flex gap-4'>
-      <Button variant='contained' href='/apps/latihan/create' color='primary' startIcon={<i className='tabler-file-plus' />}>
+      <Button
+        variant='contained'
+        href='/apps/latihan/create'
+        color='primary'
+        startIcon={<i className='tabler-file-plus' />}
+      >
         Tambah Data
       </Button>
     </div>
@@ -35,18 +42,34 @@ export const ButtonsTambah = () => {
 export const ButtonsReset = () => {
   return (
     <div className='flex gap-4'>
-      <Button variant='contained' href='/apps/latihan' color='secondary' startIcon={<i className='tabler-arrow-back-up' />}>
+      <Button
+        variant='contained'
+        href='/apps/latihan'
+        color='secondary'
+        startIcon={<i className='tabler-arrow-back-up' />}
+      >
         Kembali
       </Button>
     </div>
   )
 }
 
-export const ButtonsSimpan = () => {
+export const ButtonsSimpan = ({ label }: { label: string }) => {
+  const { pending } = useFormStatus()
   return (
     <div className='flex gap-4'>
-      <Button variant='contained' type='submit' color='success' startIcon={<i className='tabler-file-text' />}>
-        Simpan Data
+      <Button
+        variant='contained'
+        type='submit'
+        color='success'
+        endIcon={<i className='tabler-send' />}
+        disabled={pending}
+      >
+        {label === 'save' ? (
+          <span>{pending ? 'Proses save...' : 'Simpan Data'}</span>
+        ) : (
+          <span>{pending ? 'Proses Update...' : 'Update'}</span>
+        )}
       </Button>
     </div>
   )
