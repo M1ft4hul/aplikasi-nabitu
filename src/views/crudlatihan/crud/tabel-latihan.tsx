@@ -10,7 +10,7 @@ const TabelData = async () => {
       <td>{konten.isi}</td>
       <td className='flex justify-center gap-1 '>
         <ButtonsHapus />
-        <ButtonsEdit />
+        <ButtonsEdit id={konten.id} />
       </td>
     </tr>
   ))

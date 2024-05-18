@@ -13,10 +13,15 @@ export const ButtonsHapus = () => {
   )
 }
 
-export const ButtonsEdit = () => {
+export const ButtonsEdit = ({ id }: { id: string }) => {
   return (
     <div className='flex gap-4'>
-      <Button variant='contained' href='#' color='warning' startIcon={<i className='tabler-edit' />}>
+      <Button
+        variant='contained'
+        href={`/apps/latihan/edit/${id}`}
+        color='warning'
+        startIcon={<i className='tabler-edit' />}
+      >
         Edit
       </Button>
     </div>
@@ -68,7 +73,7 @@ export const ButtonsSimpan = ({ label }: { label: string }) => {
         {label === 'save' ? (
           <span>{pending ? 'Proses save...' : 'Simpan Data'}</span>
         ) : (
-          <span>{pending ? 'Proses Update...' : 'Update'}</span>
+          <span>{pending ? 'Proses Update...' : 'Update Data'}</span>
         )}
       </Button>
     </div>
