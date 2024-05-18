@@ -11,6 +11,7 @@ const LatihanSchema = z.object({
   isi: z.string().min(10)
 })
 
+// tambah data
 export const saveLatihan = async (prevState: any, formData: FormData) => {
   // ambil value yang di inputkan di form (sebelum pakai validasi)
   //   const data = Object.fromEntries(formData.entries())
@@ -26,7 +27,7 @@ export const saveLatihan = async (prevState: any, formData: FormData) => {
       Error: validatedField.error.flatten().fieldErrors
     }
   }
-  // simpan ke database
+  // simpan ke database (tambah data)
   try {
     await prisma.konten.create({
       data: {
@@ -36,6 +37,32 @@ export const saveLatihan = async (prevState: any, formData: FormData) => {
     })
   } catch (error) {
     return { message: 'Latihan gagal di simpan' }
+  }
+  revalidatePath('/apps/latihan')
+  redirect('/apps/latihan')
+}
+
+// edit data
+export const updateLatihan = async (id: string, prevState: any, formData: FormData) => {
+  //   sesudah pakai validasi
+  const validatedField = LatihanSchema.safeParse(Object.fromEntries(formData.entries()))
+
+  if (!validatedField.success) {
+    return {
+      Error: validatedField.error.flatten().fieldErrors
+    }
+  }
+  // simpan ke database (edit data)
+  try {
+    await prisma.konten.update({
+      data: {
+        judul: validatedField.data.judul,
+        isi: validatedField.data.isi
+      },
+      where: { id }
+    })
+  } catch (error) {
+    return { message: 'Latihan gagal di update' }
   }
   revalidatePath('/apps/latihan')
   redirect('/apps/latihan')

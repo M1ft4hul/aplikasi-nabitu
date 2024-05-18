@@ -21,16 +21,17 @@ import CustomTextField from '@core/components/mui/TextField'
 import data from '@/data/searchData'
 import { redirect } from 'next/dist/server/api-utils'
 import { ButtonsReset, ButtonsSimpan } from './button'
-import { saveLatihan } from '@/libs/actions'
+import { updateLatihan } from '@/libs/actions'
 import { useFormState } from 'react-dom'
 import type { Konten } from '@prisma/client'
 
-const FormEditLatihan = ({ latihans }:{latihans:Konten}) => {
+const FormEditLatihan = ({ latihans }: { latihans: Konten }) => {
+  const UpdateLatihanWithId = updateLatihan.bind(null, latihans.id)
   // validation
-  const [state, formAction] = useFormState(saveLatihan, null)
+  const [state, formAction] = useFormState(UpdateLatihanWithId, null)
   return (
     <Card>
-      <CardHeader title='Tambah Soal Latihan' />
+      <CardHeader title='Edit Soal Latihan' />
       <Divider />
       <form action={formAction}>
         <CardContent>
