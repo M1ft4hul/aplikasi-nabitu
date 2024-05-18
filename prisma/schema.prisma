@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Konten {
-  id    Int     @id @default(autoincrement())
+  id    String     @id @default(cuid())
   judul String
   isi   String
 }

@@ -23,8 +23,9 @@ import { redirect } from 'next/dist/server/api-utils'
 import { ButtonsReset, ButtonsSimpan } from './button'
 import { saveLatihan } from '@/libs/actions'
 import { useFormState } from 'react-dom'
+import type { Konten } from '@prisma/client'
 
-const FormEditLatihan = () => {
+const FormEditLatihan = ({ latihans }:{latihans:Konten}) => {
   // validation
   const [state, formAction] = useFormState(saveLatihan, null)
   return (
@@ -46,6 +47,7 @@ const FormEditLatihan = () => {
                 placeholder='Silahkan masukkan judul pertanyaan '
                 name='judul'
                 id='judul'
+                defaultValue={latihans.judul}
               />
               {/* menampilkan pesan error */}
               <div id='judul-error' aria-live='polite' aria-atomic='true'>
@@ -59,6 +61,7 @@ const FormEditLatihan = () => {
                 placeholder='Silahkan masukkan soal pertanyaan'
                 name='isi'
                 id='isi'
+                defaultValue={latihans.isi}
               />
               {/* menampilkan pesan error */}
               <div id='isi-error' aria-live='polite' aria-atomic='true'>
