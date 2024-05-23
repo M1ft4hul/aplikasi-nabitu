@@ -7,8 +7,8 @@ import { redirect } from 'next/navigation'
 
 // buat validasi data jika button simpan berjalan sukses
 const LatihanSchema = z.object({
-  judul: z.string().min(5),
-  isi: z.string().min(10)
+  judul: z.string().min(5, { message: 'judul jangan di kosongkan' }),
+  isi: z.string().min(10, { message: 'isi jangan di kosongkan' })
 })
 
 // tambah data
