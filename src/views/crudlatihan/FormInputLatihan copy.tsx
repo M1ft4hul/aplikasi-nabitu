@@ -21,19 +21,15 @@ import CustomTextField from '@core/components/mui/TextField'
 import data from '@/data/searchData'
 import { redirect } from 'next/dist/server/api-utils'
 import { ButtonsReset, ButtonsSimpan } from './button'
-import { updateLatihan } from '@/libs/actions'
+import { saveLatihan } from '@/libs/actions'
 import { useFormState } from 'react-dom'
-import type { Konten } from '@prisma/client'
 
-const FormEditLatihan = ({ latihans }: { latihans: Konten }) => {
-  const UpdateLatihanWithId = updateLatihan.bind(null, latihans.id)
+const FormInputLatihan = () => {
   // validation
-  const initialState = { message: null, error: {} }
-
-  const [state, formAction] = useFormState(UpdateLatihanWithId, initialState)
+  const [state, formAction] = useFormState(saveLatihan, null)
   return (
     <Card>
-      <CardHeader title='Edit Soal Latihan' />
+      <CardHeader title='Tambah Soal Latihan' />
       <Divider />
       <form action={formAction}>
         <CardContent>
@@ -50,17 +46,10 @@ const FormEditLatihan = ({ latihans }: { latihans: Konten }) => {
                 placeholder='Silahkan masukkan judul pertanyaan '
                 name='judul'
                 id='judul'
-                defaultValue={latihans.judul}
               />
               {/* menampilkan pesan error */}
               <div id='judul-error' aria-live='polite' aria-atomic='true'>
-                {/* <p className='text-red-700'>{state?.Error?.judul}</p> */}
-                {state.errors?.judul &&
-                  state.errors.judul.map((error: string) => (
-                    <p className='text-red-700' key={error}>
-                      {error}
-                    </p>
-                  ))}
+                <p className='text-red-700'>{state?.Error?.judul}</p>
               </div>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -70,28 +59,21 @@ const FormEditLatihan = ({ latihans }: { latihans: Konten }) => {
                 placeholder='Silahkan masukkan soal pertanyaan'
                 name='isi'
                 id='isi'
-                defaultValue={latihans.isi}
               />
               {/* menampilkan pesan error */}
-              <div id='judul-error' aria-live='polite' aria-atomic='true'>
-                {/* <p className='text-red-700'>{state?.Error?.judul}</p> */}
-                {state.errors?.isi &&
-                  state.errors.isi.map((error: string) => (
-                    <p className='text-red-700' key={error}>
-                      {error}
-                    </p>
-                  ))}
+              <div id='isi-error' aria-live='polite' aria-atomic='true'>
+                <p className='text-red-700'>{state?.Error?.isi}</p>
               </div>
             </Grid>
           </Grid>
           {/* pesan error */}
-          {/* <div id='message-error' aria-live='polite' aria-atomic='true'>
+          <div id='message-error' aria-live='polite' aria-atomic='true'>
             <p className='text-red-700'>{state?.message}</p>
-          </div> */}
+          </div>
         </CardContent>
         <Divider />
         <CardActions>
-          <ButtonsSimpan label='Update Data' />
+          <ButtonsSimpan label='save' />
           <ButtonsReset />
         </CardActions>
       </form>
@@ -99,4 +81,4 @@ const FormEditLatihan = ({ latihans }: { latihans: Konten }) => {
   )
 }
 
-export default FormEditLatihan
+export default FormInputLatihan

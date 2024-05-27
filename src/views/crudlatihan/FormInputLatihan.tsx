@@ -23,10 +23,12 @@ import { redirect } from 'next/dist/server/api-utils'
 import { ButtonsReset, ButtonsSimpan } from './button'
 import { saveLatihan } from '@/libs/actions'
 import { useFormState } from 'react-dom'
+import { toast } from 'react-toastify'
 
 const FormInputLatihan = () => {
-  // validation
-  const [state, formAction] = useFormState(saveLatihan, null)
+  const initialState = { message: null, error: {} };
+
+  const [state, formAction] = useFormState(saveLatihan, initialState)
   return (
     <Card>
       <CardHeader title='Tambah Soal Latihan' />
@@ -49,7 +51,13 @@ const FormInputLatihan = () => {
               />
               {/* menampilkan pesan error */}
               <div id='judul-error' aria-live='polite' aria-atomic='true'>
-                <p className='text-red-700'>{state?.Error?.judul}</p>
+                {/* <p className='text-red-700'>{state?.Error?.judul}</p> */}
+                {state.errors?.judul &&
+                  state.errors.judul.map((error: string) => (
+                    <p className='text-red-700' key={error}>
+                      {error}
+                    </p>
+                  ))}
               </div>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -61,15 +69,21 @@ const FormInputLatihan = () => {
                 id='isi'
               />
               {/* menampilkan pesan error */}
-              <div id='isi-error' aria-live='polite' aria-atomic='true'>
-                <p className='text-red-700'>{state?.Error?.isi}</p>
+              <div id='judul-error' aria-live='polite' aria-atomic='true'>
+                {/* <p className='text-red-700'>{state?.Error?.judul}</p> */}
+                {state.errors?.isi &&
+                  state.errors.isi.map((error: string) => (
+                    <p className='text-red-700' key={error}>
+                      {error}
+                    </p>
+                  ))}
               </div>
             </Grid>
           </Grid>
           {/* pesan error */}
-          <div id='message-error' aria-live='polite' aria-atomic='true'>
+          {/* <div id='message-error' aria-live='polite' aria-atomic='true'>
             <p className='text-red-700'>{state?.message}</p>
-          </div>
+          </div> */}
         </CardContent>
         <Divider />
         <CardActions>

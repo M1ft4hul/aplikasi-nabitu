@@ -21,3 +21,15 @@ export const getLatihanById = async (id: string) => {
     throw new Error('tidak ada data latihan')
   }
 }
+
+// fetching API users
+export const getData = async () => {
+  // Vars
+  const res = await fetch('https://dummyjson.com/users')
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch userData')
+  }
+
+  return res.json()
+}
