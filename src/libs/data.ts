@@ -1,4 +1,5 @@
 import { prisma } from '@/libs/prisma'
+import axios from 'axios'
 
 export const getLatihan = async () => {
   try {
@@ -24,12 +25,13 @@ export const getLatihanById = async (id: string) => {
 
 // fetching API users
 export const getData = async () => {
+  // const [data, setData] = useState([])
+
   // Vars
-  const res = await fetch('https://dummyjson.com/users')
+  // const res = await fetch('https://dummyjson.com/users')
+  // if (!res.ok) {
+  //   throw new Error('Failed to fetch userData')
+  // }
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch userData')
-  }
-
-  return res.json()
+  // return res.json()
 }
