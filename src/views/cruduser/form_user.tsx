@@ -16,7 +16,7 @@ import handlePosts from '@/app/api/HandlePost'
 import handleUser from '@/app/api/HandleUser'
 import { Post } from '@/models/Post'
 import { User } from '@/models/Users'
-import { ButtonsEdit, ButtonsHapus } from './button'
+import { ButtonsEdit, ButtosnDetail } from './button'
 
 const DataUsers = () => {
   // const [posts, setPosts] = useState<Post[]>([]) untuk data post
@@ -76,7 +76,7 @@ const DataUsers = () => {
                   <td>{item.email}</td>
                   <td className='flex justify-center gap-1 '>
                     <ButtonsEdit />
-                    <ButtonsHapus />
+                    <ButtosnDetail id={item.id}/>
                   </td>
                 </tr>
               ))}

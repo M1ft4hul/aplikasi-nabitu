@@ -2,7 +2,6 @@
 // MUI Imports
 import Button from '@mui/material/Button'
 import { useFormStatus } from 'react-dom'
-import { deleteLatihan } from '@/libs/actions'
 
 // export const ButtonsHapus = ({ id }: { id: string }) => {
 //   const DeleteLatihanWithId = deleteLatihan.bind(null, id)
@@ -50,6 +49,23 @@ export const ButtonsEdit = () => {
         startIcon={<i className='tabler-edit' />}
       >
         Edit
+      </Button>
+    </div>
+  )
+}
+
+export const ButtosnDetail = ({ id }: { id: number }) => {
+
+  return (
+    <div className='flex gap-4'>
+      <Button
+        type='submit'
+        variant='contained'
+        href={`/apps/users/detail/${id}`}
+        color='info'
+        startIcon={<i className='tabler-eye' />}
+      >
+        view user
       </Button>
     </div>
   )
