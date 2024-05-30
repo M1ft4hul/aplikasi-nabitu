@@ -16,21 +16,6 @@ import ConfirmationDialog from '@components/dialogs/confirmation-dialog'
 import OpenDialogOnElementClick from '@components/dialogs/OpenDialogOnElementClick'
 import CustomAvatar from '@core/components/mui/Avatar'
 
-// Vars
-const userData = {
-  firstName: 'Seth',
-  lastName: 'Hallam',
-  userName: '@shallamb',
-  billingEmail: 'shallamb@gmail.com',
-  status: 'active',
-  role: 'Subscriber',
-  taxId: 'Tax-8894',
-  contact: '+1 (234) 464-0600',
-  language: ['English'],
-  country: 'France',
-  useAsBillingAddress: true
-}
-
 const UserDetail = () => {
   // Vars
   const buttonProps = (children: string, color: ThemeColor, variant: ButtonProps['variant']): ButtonProps => ({
@@ -47,7 +32,7 @@ const UserDetail = () => {
             <div className='flex items-center justify-center flex-col gap-4'>
               <div className='flex flex-col items-center gap-4'>
                 <CustomAvatar alt='user-profile' src='/images/avatars/1.png' variant='rounded' size={120} />
-                <Typography variant='h5'>{`${userData.firstName} ${userData.lastName}`}</Typography>
+                <Typography variant='h5'>miftahul jannah</Typography>
               </div>
               <Chip label='Author' color='secondary' size='small' variant='tonal' />
             </div>
@@ -80,49 +65,49 @@ const UserDetail = () => {
                 <Typography className='font-medium' color='text.primary'>
                   Username:
                 </Typography>
-                <Typography>{userData.userName}</Typography>
+                <Typography>mjcutter</Typography>
               </div>
               <div className='flex items-center flex-wrap gap-x-1.5'>
                 <Typography className='font-medium' color='text.primary'>
                   Billing Email:
                 </Typography>
-                <Typography>{userData.billingEmail}</Typography>
+                <Typography>mjcutter112@gmail.com</Typography>
               </div>
               <div className='flex items-center flex-wrap gap-x-1.5'>
                 <Typography className='font-medium' color='text.primary'>
                   Status
                 </Typography>
-                <Typography color='text.primary'>{userData.status}</Typography>
+                <Typography color='text.primary'>user</Typography>
               </div>
               <div className='flex items-center flex-wrap gap-x-1.5'>
                 <Typography className='font-medium' color='text.primary'>
                   Role:
                 </Typography>
-                <Typography color='text.primary'>{userData.role}</Typography>
+                <Typography color='text.primary'>mage</Typography>
               </div>
               <div className='flex items-center flex-wrap gap-x-1.5'>
                 <Typography className='font-medium' color='text.primary'>
                   Tax ID:
                 </Typography>
-                <Typography color='text.primary'>{userData.taxId}</Typography>
+                <Typography color='text.primary'>112321</Typography>
               </div>
               <div className='flex items-center flex-wrap gap-x-1.5'>
                 <Typography className='font-medium' color='text.primary'>
                   Contact:
                 </Typography>
-                <Typography color='text.primary'>{userData.contact}</Typography>
+                <Typography color='text.primary'>gohydro kendari</Typography>
               </div>
               <div className='flex items-center flex-wrap gap-x-1.5'>
                 <Typography className='font-medium' color='text.primary'>
                   Language:
                 </Typography>
-                <Typography color='text.primary'>{userData.language}</Typography>
+                <Typography color='text.primary'>english</Typography>
               </div>
               <div className='flex items-center flex-wrap gap-x-1.5'>
                 <Typography className='font-medium' color='text.primary'>
                   Country:
                 </Typography>
-                <Typography color='text.primary'>{userData.country}</Typography>
+                <Typography color='text.primary'>indonesia</Typography>
               </div>
             </div>
           </div>
@@ -131,7 +116,7 @@ const UserDetail = () => {
               element={Button}
               elementProps={buttonProps('Edit', 'primary', 'contained')}
               dialog={EditUserInfo}
-              dialogProps={{ data: userData }}
+              // dialogProps={{ data: userData }}
             />
             <OpenDialogOnElementClick
               element={Button}

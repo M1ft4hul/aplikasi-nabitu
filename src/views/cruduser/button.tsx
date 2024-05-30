@@ -65,7 +65,7 @@ export const ButtosnDetail = ({ id }: { id: number }) => {
         color='info'
         startIcon={<i className='tabler-eye' />}
       >
-        view user
+        View
       </Button>
     </div>
   )
