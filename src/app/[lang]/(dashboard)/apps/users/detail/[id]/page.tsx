@@ -18,9 +18,12 @@ import type { ButtonProps } from '@mui/material/Button'
 import type { ThemeColor } from '@core/types'
 import EditUserInfo from '@components/dialogs/edit-user-info'
 import ConfirmationDialog from '@components/dialogs/confirmation-dialog'
+import { Profil } from '@/models/Profile'
+import handleProfile from '@/app/api/HandleProfil'
 
 const DetailUser = ({ params }: { params: { id: number } }) => {
-  const [userDetail, setUserDetail] = useState<User>()
+  // const [userDetail, setUserDetail] = useState<User>()
+  const [userDetail, setUserDetail] = useState<Profil>()
 
   const id = params.id
 
@@ -29,10 +32,12 @@ const DetailUser = ({ params }: { params: { id: number } }) => {
   }, [id])
 
   const getUserById = async () => {
-    const api = `/users/${id}`
+    // const api = `/users/${id}`
+    const api = `/profile/${id}`
 
     try {
-      const res: any = await handleUser.getUsers(api)
+      // const res: any = await handleUser.getUsers(api)
+      const res: any = await handleProfile.getProfile(api)
 
       if (res) {
         setUserDetail(res)
@@ -43,6 +48,8 @@ const DetailUser = ({ params }: { params: { id: number } }) => {
       console.log(error)
     }
   }
+
+  // console.log(userDetail?.data.age)
   const buttonProps = (children: string, color: ThemeColor, variant: ButtonProps['variant']): ButtonProps => ({
     children,
     color,
@@ -60,9 +67,9 @@ const DetailUser = ({ params }: { params: { id: number } }) => {
               <div className='flex items-center justify-center flex-col gap-4'>
                 <div className='flex flex-col items-center gap-4'>
                   <CustomAvatar alt='user-profile' src='/images/avatars/1.png' variant='rounded' size={120} />
-                  <Typography variant='h5'>{userDetail?.name}</Typography>
+                  <Typography variant='h5'>{userDetail?.data.name}</Typography>
                 </div>
-                <Chip label='Author' color='secondary' size='small' variant='tonal' />
+                <Chip label='Nasabah' color='secondary' size='small' variant='tonal' />
               </div>
             </div>
             <div>
@@ -70,21 +77,15 @@ const DetailUser = ({ params }: { params: { id: number } }) => {
               <div className='flex flex-col gap-2'>
                 <div className='flex items-center flex-wrap gap-x-1.5'>
                   <Typography className='font-medium' color='text.primary'>
-                    Username:
+                    Umur:
                   </Typography>
-                  <Typography>{userDetail?.username}</Typography>
+                  <Typography>{userDetail?.data.age}</Typography>
                 </div>
                 <div className='flex items-center flex-wrap gap-x-1.5'>
                   <Typography className='font-medium' color='text.primary'>
-                    Email:
+                    Alamat:
                   </Typography>
-                  <Typography>{userDetail?.email}</Typography>
-                </div>
-                <div className='flex items-center flex-wrap gap-x-1.5'>
-                  <Typography className='font-medium' color='text.primary'>
-                    Website:
-                  </Typography>
-                  <Typography color='text.primary'>{userDetail?.website}</Typography>
+                  <Typography>{userDetail?.data.alamat}</Typography>
                 </div>
               </div>
             </div>

@@ -16,22 +16,26 @@ import handlePosts from '@/app/api/HandlePost'
 import handleUser from '@/app/api/HandleUser'
 import { Post } from '@/models/Post'
 import { User } from '@/models/Users'
+import { Profil } from '@/models/Profile'
 import { ButtonsEdit, ButtosnDetail } from './button'
+import handleProfile from '@/app/api/HandleProfil'
 
 const DataUsers = () => {
   // const [posts, setPosts] = useState<Post[]>([]) untuk data post
-  const [users, setUsers] = useState<User[]>([])
+  // const [users, setUsers] = useState<User[]>([])
+  const [users, setUsers] = useState<Profil[]>([])
 
   useEffect(() => {
     getAllUsers()
   }, [])
 
   const getAllUsers = async () => {
-    const api = `/users`
+    const api = `/profile`
     // kalau data post `/post`
 
     try {
-      const res: any = await handleUser.getUsers(api)
+      const res: any = await handleProfile.getProfile(api)
+      // const res: any = await handleUser.getUsers(api)
       // kalau data post await handlePosts.getPosts(api)
 
       if (res) {
@@ -54,8 +58,8 @@ const DataUsers = () => {
             <tr>
               <th>No</th>
               <th>Nama User</th>
-              <th>Username</th>
-              <th>Email</th>
+              <th>Umur</th>
+              <th>Alamat</th>
               <th className='flex justify-center'>Aksi</th>
             </tr>
           </thead>
@@ -72,8 +76,8 @@ const DataUsers = () => {
                       </div>
                     </div>
                   </td>
-                  <td>{item.username}</td>
-                  <td>{item.email}</td>
+                  <td>{item.age}</td>
+                  <td>{item.alamat}</td>
                   <td className='flex justify-center gap-1 '>
                     <ButtonsEdit />
                     <ButtosnDetail id={item.id}/>
