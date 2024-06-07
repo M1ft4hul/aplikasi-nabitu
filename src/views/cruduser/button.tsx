@@ -77,11 +77,11 @@ export const ButtonsTambah = () => {
     <div className='flex gap-4'>
       <Button
         variant='contained'
-        // href='/apps/latihan/create'
+        href='/apps/users/create'
         color='primary'
         startIcon={<i className='tabler-file-plus' />}
       >
-        Tambah Data
+        Tambah User
       </Button>
     </div>
   )

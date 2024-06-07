@@ -99,7 +99,7 @@ const Register = ({ mode }: { mode: SystemMode }) => {
     e.preventDefault()
 
     if (!username || !email || !password) {
-      alert('Please Enter Name and Location')
+      alert('Please Enter username , email and password')
       return
     }
     try {
@@ -111,6 +111,7 @@ const Register = ({ mode }: { mode: SystemMode }) => {
 
       if (response.status === 201) {
         console.log('Posted Successfully')
+        console.log(username, email, password)
         router.push('/')
         setUsername('')
         setEmail('')
@@ -149,7 +150,9 @@ const Register = ({ mode }: { mode: SystemMode }) => {
               fullWidth
               name='username'
               value={username}
-              onChange={(e)=>{setUsername(e.target.value)}}
+              onChange={e => {
+                setUsername(e.target.value)
+              }}
               id='username'
               label='Username'
               placeholder='Enter your username'
@@ -158,7 +161,9 @@ const Register = ({ mode }: { mode: SystemMode }) => {
               fullWidth
               name='email'
               value={email}
-              onChange={(e)=>{setEmail(e.target.value)}}
+              onChange={e => {
+                setEmail(e.target.value)
+              }}
               id='email'
               label='Email'
               placeholder='Enter your email'
@@ -168,7 +173,9 @@ const Register = ({ mode }: { mode: SystemMode }) => {
               label='Password'
               name='password'
               value={password}
-              onChange={(e)=>{setPassword(e.target.value)}}
+              onChange={e => {
+                setPassword(e.target.value)
+              }}
               id='password'
               placeholder='············'
               type={isPasswordShown ? 'text' : 'password'}

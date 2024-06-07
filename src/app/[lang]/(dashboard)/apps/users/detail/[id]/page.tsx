@@ -67,7 +67,7 @@ const DetailUser = ({ params }: { params: { id: number } }) => {
               <div className='flex items-center justify-center flex-col gap-4'>
                 <div className='flex flex-col items-center gap-4'>
                   <CustomAvatar alt='user-profile' src='/images/avatars/1.png' variant='rounded' size={120} />
-                  <Typography variant='h5'>{userDetail?.data.name}</Typography>
+                  <Typography variant='h5'>{userDetail?.data.fullname}</Typography>
                 </div>
                 <Chip label='Nasabah' color='secondary' size='small' variant='tonal' />
               </div>

@@ -1,6 +1,6 @@
 export interface Profil {
   id: number
-  name: string
+  fullname: string
   age: string
   alamat: string
   created_at: string
@@ -11,7 +11,7 @@ export interface Profil {
 
 export interface Data {
   id: number
-  name: string
+  fullname: string
   age: string
   alamat: string
   created_at: string

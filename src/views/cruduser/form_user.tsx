@@ -72,7 +72,7 @@ const DataUsers = () => {
                     <div className='flex items-center gap-4'>
                       <Avatar src='/images/avatars/1.png' alt='Victor Anderson' />
                       <div className='flex flex-col'>
-                        <p>{item.name}</p>
+                        <p>{item.fullname}</p>
                       </div>
                     </div>
                   </td>
