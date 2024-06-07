@@ -1,7 +1,7 @@
-import FormInputLatihan from '@/views/crudlatihan/FormInputLatihan'
 import Typography from '@mui/material/Typography'
 
 import { Grid } from '@mui/material'
+import FormInputUser from '@/views/cruduser/create/create_user'
 
 const TambahUser = () => {
   return (
@@ -10,7 +10,7 @@ const TambahUser = () => {
         <Typography variant='h5'>Form Tambah Data User</Typography>
       </Grid>
       <Grid item xs={12}>
-        {/* <FormInputLatihan /> */}
+        <FormInputUser />
       </Grid>
     </Grid>
   )

@@ -92,7 +92,7 @@ export const ButtonsReset = () => {
     <div className='flex gap-4'>
       <Button
         variant='contained'
-        href='/apps/latihan'
+        href='/apps/users'
         color='secondary'
         startIcon={<i className='tabler-arrow-back-up' />}
       >
