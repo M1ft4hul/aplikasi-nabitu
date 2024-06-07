@@ -1,11 +1,11 @@
 'use client'
 
 // React Imports
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // Next Imports
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
 // MUI Imports
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -35,6 +35,7 @@ import { useSettings } from '@core/hooks/useSettings'
 
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
+import axios from 'axios'
 
 // Styled Custom Components
 const RegisterIllustration = styled('img')(({ theme }) => ({
@@ -89,6 +90,37 @@ const Register = ({ mode }: { mode: SystemMode }) => {
 
   const handleClickShowPassword = () => setIsPasswordShown(show => !show)
 
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const router = useRouter()
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+
+    if (!username || !email || !password) {
+      alert('Please Enter Name and Location')
+      return
+    }
+    try {
+      const response = await axios.post('https://dev-api-nabitu.mjscode.pro/api/v1/auth/user/register', {
+        username: username,
+        email: email,
+        password: password
+      })
+
+      if (response.status === 201) {
+        console.log('Posted Successfully')
+        router.push('/')
+        setUsername('')
+        setEmail('')
+        setPassword('')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className='flex bs-full justify-center'>
       <div
@@ -111,12 +143,33 @@ const Register = ({ mode }: { mode: SystemMode }) => {
             <Typography variant='h4'>Registration here 🚀</Typography>
             <Typography>Enter your details to register!</Typography>
           </div>
-          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()} className='flex flex-col gap-6'>
-            <CustomTextField autoFocus fullWidth label='Username' placeholder='Enter your username' />
-            <CustomTextField fullWidth label='Email' placeholder='Enter your email' />
+          <form noValidate autoComplete='off' onSubmit={handleSubmit} className='flex flex-col gap-6'>
+            <CustomTextField
+              autoFocus
+              fullWidth
+              name='username'
+              value={username}
+              onChange={(e)=>{setUsername(e.target.value)}}
+              id='username'
+              label='Username'
+              placeholder='Enter your username'
+            />
+            <CustomTextField
+              fullWidth
+              name='email'
+              value={email}
+              onChange={(e)=>{setEmail(e.target.value)}}
+              id='email'
+              label='Email'
+              placeholder='Enter your email'
+            />
             <CustomTextField
               fullWidth
               label='Password'
+              name='password'
+              value={password}
+              onChange={(e)=>{setPassword(e.target.value)}}
+              id='password'
               placeholder='············'
               type={isPasswordShown ? 'text' : 'password'}
               InputProps={{
@@ -129,7 +182,7 @@ const Register = ({ mode }: { mode: SystemMode }) => {
                 )
               }}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox />}
               label={
                 <>
@@ -139,7 +192,7 @@ const Register = ({ mode }: { mode: SystemMode }) => {
                   </Link>
                 </>
               }
-            />
+            /> */}
             <Button fullWidth variant='contained' type='submit'>
               Sign Up
             </Button>
