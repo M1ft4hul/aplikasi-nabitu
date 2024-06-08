@@ -1,5 +1,5 @@
-import FormInputPost from "@/views/crudposts/create/create_posts"
-import { Grid, Typography } from "@mui/material"
+import FormInputPost from '@/views/crudposts/create/create_posts'
+import { Grid, Typography } from '@mui/material'
 
 const TambahPost = () => {
   return (

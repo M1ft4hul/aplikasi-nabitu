@@ -14,24 +14,16 @@ const DataPosts = () => {
   const [posts, setPosts] = useState<Post[]>([])
 
   useEffect(() => {
-    getAllPosts()
-  }, [])
-
-  const getAllPosts = async () => {
-    const api = `/posts`
-
-    try {
-      const res: any = await handlePost.getPosts(api)
-
-      if (res) {
+    const fetchPosts = async () => {
+      try {
+        const res = await handlePost.getPosts('/posts')
         setPosts(res)
-      } else {
-        console.log(`page not found`)
+      } catch (error) {
+        console.error('Error fetching posts:', error)
       }
-    } catch (error) {
-      console.log(`datanya kosong ${error}`)
     }
-  }
+    fetchPosts()
+  }, [])
 
   return (
     <Card>
@@ -47,18 +39,17 @@ const DataPosts = () => {
             </tr>
           </thead>
           <tbody>
-            {posts.length > 0 &&
-              posts.map(item => (
-                <tr key={item.id}>
-                  <td>{item.id}</td>
-                  <td>{item.title}</td>
-                  <td>{item.body}</td>
-                  <td className='flex justify-center gap-1 '>
-                    {/* <ButtonsEdit /> */}
-                    {/* <ButtosnDetail id={item.id} /> */}
-                  </td>
-                </tr>
-              ))}
+            {posts.map((item, index) => (
+              <tr key={index}>
+                <td>{item.id}</td>
+                <td>{item.title}</td>
+                <td>{item.body}</td>
+                <td className='flex justify-center gap-1 '>
+                  {/* <ButtonsEdit /> */}
+                  {/* <ButtosnDetail id={item.id} /> */}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

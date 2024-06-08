@@ -34,9 +34,8 @@ const FormInputPost = () => {
       const res = await handlePost.createPosts('/posts', newPost)
       setPosts([...posts, res])
       console.log('Post added successfully:', res)
-      // Bersihkan form setelah berhasil menambahkan user
       setNewPost({
-        userId: '1', // Diisi kembali dengan angka 1
+        userId: '1',
         title: '',
         body: ''
       })
