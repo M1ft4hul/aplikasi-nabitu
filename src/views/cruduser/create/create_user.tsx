@@ -1,7 +1,7 @@
 'use client'
 
 // React Imports
-import { useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 // MUI Imports
 import Card from '@mui/material/Card'
@@ -17,13 +17,53 @@ import CardActions from '@mui/material/CardActions'
 // Components Imports
 import CustomTextField from '@core/components/mui/TextField'
 import { ButtonsReset, ButtonsSimpan } from '../button'
+import { Profil } from '@/models/Profile'
+import handleProfile from '@/app/api/HandleProfil'
+import { useRouter } from 'next/navigation'
 
 const FormInputUser = () => {
+  const router = useRouter()
+  const [users, setUsers] = useState<Profil[]>([])
+  const [newUser, setNewUser] = useState({
+    fullname: '',
+    age: '',
+    alamat: '',
+    users_id: '1'
+  })
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setNewUser({ ...newUser, [name]: value })
+  }
+
+  const handleAddUser = async (newUser: any) => {
+    try {
+      const res = await handleProfile.createProfile('/profile', newUser)
+      setUsers([...users, res])
+      console.log('User added successfully:', res)
+      // Bersihkan form setelah berhasil menambahkan user
+      setNewUser({
+        fullname: '',
+        age: '',
+        alamat: '',
+        users_id: '1' // Diisi kembali dengan angka 1
+      })
+      router.push('/apps/users')
+    } catch (error) {
+      console.error('Error adding user:', error)
+    }
+  }
+
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    handleAddUser(newUser)
+  }
+
   return (
     <Card>
       <CardHeader title='Tambah User' />
       <Divider />
-      <form>
+      <form onSubmit={handleSubmit}>
         <CardContent>
           <Grid container spacing={6}>
             <Grid item xs={12}>
@@ -38,10 +78,20 @@ const FormInputUser = () => {
                 placeholder='Silahkan Isi Nama Lengkap '
                 name='fullname'
                 id='fullname'
+                value={newUser.fullname}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <CustomTextField fullWidth label='Umur' placeholder='Silahkan Isi Umur' name='age' id='age' />
+              <CustomTextField
+                fullWidth
+                label='Umur'
+                placeholder='Silahkan Isi Umur'
+                name='age'
+                id='age'
+                value={newUser.age}
+                onChange={handleChange}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <CustomTextField
@@ -49,12 +99,14 @@ const FormInputUser = () => {
                 multiline
                 fullWidth
                 label='Alamat Rumah'
-                defaultValue='Silahkan Isi Alamat Rumah'
-                id='textarea-outlined-static'
+                name='alamat'
+                value={newUser.alamat}
+                onChange={handleChange}
+                placeholder='Silahkan Alamat rumah'
+                id='alamat'
               />
             </Grid>
           </Grid>
-          
         </CardContent>
         <Divider />
         <CardActions>

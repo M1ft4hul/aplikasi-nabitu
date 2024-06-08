@@ -3,6 +3,7 @@ export interface Profil {
   fullname: string
   age: string
   alamat: string
+  users_id: number
   created_at: string
   updated_at: string
   deleted_at: any

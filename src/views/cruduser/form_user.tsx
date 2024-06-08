@@ -45,7 +45,7 @@ const DataUsers = () => {
         console.log(`page not found`)
       }
     } catch (error) {
-      console.log(`can not get post ${error}`)
+      console.log(`datanya kosong ${error}`)
     }
   }
 
