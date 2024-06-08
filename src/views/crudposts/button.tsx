@@ -77,7 +77,7 @@ export const ButtonsTambah = () => {
     <div className='flex gap-4'>
       <Button
         variant='contained'
-        href='/apps/users/create'
+        href='/apps/posts/create'
         color='primary'
         startIcon={<i className='tabler-file-plus' />}
       >
@@ -92,7 +92,7 @@ export const ButtonsReset = () => {
     <div className='flex gap-4'>
       <Button
         variant='contained'
-        href='/apps/users'
+        href='/apps/posts'
         color='secondary'
         startIcon={<i className='tabler-arrow-back-up' />}
       >
