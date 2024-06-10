@@ -1,3 +1,4 @@
+import { PostProvider } from '@/contexts/PostContext'
 import FormInputPost from '@/views/crudposts/create/create_posts'
 import { Grid, Typography } from '@mui/material'
 
@@ -8,7 +9,9 @@ const TambahPost = () => {
         <Typography variant='h5'>Form Tambah Data Post</Typography>
       </Grid>
       <Grid item xs={12}>
-        <FormInputPost />
+        <PostProvider>
+          <FormInputPost />
+        </PostProvider>
       </Grid>
     </Grid>
   )

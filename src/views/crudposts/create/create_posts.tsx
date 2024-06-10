@@ -10,14 +10,15 @@ import CustomTextField from '@core/components/mui/TextField'
 import CardActions from '@mui/material/CardActions'
 import { useRouter } from 'next/navigation'
 import { Post } from '@/models/Post'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useContext, useState } from 'react'
 import handlePost from '@/app/api/HandlePost'
 import { ButtonsReset, ButtonsSimpan } from '../button'
+import { PostContext } from '@/contexts/PostContext'
 
 const FormInputPost = () => {
   // tambah data dengan axios
+  const { posts, setPosts } = useContext(PostContext)
   const router = useRouter()
-  const [posts, setPosts] = useState<Post[]>([])
   const [newPost, setNewPost] = useState({
     userId: '1',
     title: '',
