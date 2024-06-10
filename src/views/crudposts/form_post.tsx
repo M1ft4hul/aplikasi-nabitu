@@ -39,8 +39,8 @@ const DataPosts = () => {
             </tr>
           </thead>
           <tbody>
-            {posts.map((item, index) => (
-              <tr key={index}>
+            {posts.map(item => (
+              <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.title}</td>
                 <td>{item.body}</td>
